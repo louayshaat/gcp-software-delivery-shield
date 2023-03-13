@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: secure
+  name: secure
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: secure
+  template:
+    metadata:
+      labels:
+        run: secure
+    spec:
+      containers:
+      - image: ${FQ_DIGEST}
+        name: secure
+        ports:
+        - containerPort: 8000
