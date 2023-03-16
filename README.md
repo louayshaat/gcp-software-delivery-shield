@@ -23,9 +23,97 @@ git clone https://github.com/louayshaat/gcp-software-delivery-shield
 gcloud artifacts repositories create sds
 ```
 
+## Create Binary Attestation
+
+### Create a Policy
+```
+cat > ./policy.yaml << EOM
+    globalPolicyEvaluationMode: ENABLE
+    defaultAdmissionRule:
+      evaluationMode: ALWAYS_DENY
+      enforcementMode: ENFORCED_BLOCK_AND_AUDIT_LOG
+EOM
+```
+
+### Import policy
+```
+gcloud container binauthz policy import policy.yaml
+```
+
+### Create a note
+```
+cat > ./create_note_request.json << EOM
+{
+  "attestation": {
+    "hint": {
+      "human_readable_name": "This note represents an attestation authority"
+    }
+  }
+}
+EOM
+```
+
+### Submit the note
+
+```
+curl -vvv -X POST \
+    -H "Content-Type: application/json"  \
+    -H "Authorization: Bearer $(gcloud auth print-access-token)"  \
+    --data-binary @./create_note_request.json  \
+    "https://containeranalysis.googleapis.com/v1/projects/$PROJECT/notes/?noteId=my-attestor-note"
+```
+
+### Verify the note
+
+```
+curl -vvv  \
+    -H "Authorization: Bearer $(gcloud auth print-access-token)" \
+    "https://containeranalysis.googleapis.com/v1/projects/$PROJECT/notes/my-attestor-note"
+```
+
+### Create attester
+
+```
+gcloud container binauthz attestors create my-binauthz-attestor \
+    --attestation-authority-note=my-attestor-note \
+    --attestation-authority-note-project=$PROJECT
+```
+    
+### Verify Attestor
+```
+gcloud container binauthz attestors list
+```
+
+### Add Variables
+
+export KEY_LOCATION=global
+export KEYRING=binauthz
+export KEY_NAME=lab-key
+export KEY_VERSION=1
+
+
+### Create Key Ring
+gcloud kms keyrings create "${KEYRING}" --location="${KEY_LOCATION}"
+
+### Create key pair
+gcloud kms keys create "${KEY_NAME}" \
+    --keyring="${KEYRING}" --location="${KEY_LOCATION}" \
+    --purpose asymmetric-signing  --default-algorithm="ec-sign-p256-sha256"
+    
+### Associate the key with your authority
+```
+gcloud beta container binauthz attestors public-keys add  \
+    --attestor="my-binauthz-attestor"  \
+    --keyversion-project=“core-demos”  \
+    --keyversion-location="${KEY_LOCATION}" \
+    --keyversion-keyring="${KEYRING}" \
+    --keyversion-key="${KEY_NAME}" \
+    --keyversion="${KEY_VERSION}"
+```
+
 ## Update the cloudbuild file
 
-Replace the repo-name in the cloudbuild.yaml file with your repo that you created in case you use a different nam,e
+Replace the repo-name in the cloudbuild.yaml file with your repo that you created in case you use a different name
 
 
 ## Run the build
