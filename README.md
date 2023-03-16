@@ -88,7 +88,7 @@ curl -vvv  \
 ### Create attester
 
 ```
-gcloud container binauthz attestors create my-binauthz-attestor \
+gcloud container binauthz attestors create $ATTESTOR_ID \
     --attestation-authority-note=my-attestor-note \
     --attestation-authority-note-project=$PROJECT
 ```
@@ -109,7 +109,7 @@ gcloud kms keys create "${KEY_NAME}" \
 ### Associate the key with your authority
 ```
 gcloud beta container binauthz attestors public-keys add  \
-    --attestor="my-binauthz-attestor"  \
+    --attestor="${ATTESTOR_ID}"  \
     --keyversion-project=“core-demos”  \
     --keyversion-location="${KEY_LOCATION}" \
     --keyversion-keyring="${KEYRING}" \
