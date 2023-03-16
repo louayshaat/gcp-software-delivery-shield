@@ -16,6 +16,7 @@ export KEY_LOCATION=global
 export KEYRING=binauthz
 export KEY_NAME=lab-key
 export KEY_VERSION=1
+export ATTESTOR_ID=sds
 ```
 
 ## Import the Binary Auth Docker Container
@@ -38,12 +39,14 @@ gcloud artifacts repositories create sds
 
 ### Create a Policy
 ```
-cat > ./policy.yaml << EOM
+cat << EOF > policy.yaml
     globalPolicyEvaluationMode: ENABLE
     defaultAdmissionRule:
-      evaluationMode: ALWAYS_DENY
+      evaluationMode: REQUIRE_ATTESTATION
       enforcementMode: ENFORCED_BLOCK_AND_AUDIT_LOG
-EOM
+      requireAttestationsBy:
+      - projects/${PROJECT_ID}/attestors/${ATTESTOR_ID}
+EOF
 ```
 
 ### Import policy
