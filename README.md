@@ -38,7 +38,7 @@ gcloud artifacts repositories create sds
 
 ## Create Binary Attestation
 
-### Create a Policy
+#### Create a Policy
 ```
 cat << EOF > policy.yaml
     globalPolicyEvaluationMode: ENABLE
@@ -50,12 +50,12 @@ cat << EOF > policy.yaml
 EOF
 ```
 
-### Import policy
+#### Import policy
 ```
 gcloud container binauthz policy import policy.yaml
 ```
 
-### Create a note
+#### Create a note
 ```
 cat > ./create_note_request.json << EOM
 {
@@ -68,7 +68,7 @@ cat > ./create_note_request.json << EOM
 EOM
 ```
 
-### Submit the note
+#### Submit the note
 
 ```
 curl -vvv -X POST \
@@ -78,7 +78,7 @@ curl -vvv -X POST \
     "https://containeranalysis.googleapis.com/v1/projects/$PROJECT/notes/?noteId=my-attestor-note"
 ```
 
-### Verify the note
+#### Verify the note
 
 ```
 curl -vvv  \
@@ -86,7 +86,7 @@ curl -vvv  \
     "https://containeranalysis.googleapis.com/v1/projects/$PROJECT/notes/my-attestor-note"
 ```
 
-### Create attester
+#### Create attester
 
 ```
 gcloud container binauthz attestors create $ATTESTOR_ID \
@@ -94,22 +94,22 @@ gcloud container binauthz attestors create $ATTESTOR_ID \
     --attestation-authority-note-project=$PROJECT
 ```
     
-### Verify Attestor
+#### Verify Attestor
 ```
 gcloud container binauthz attestors list
 ```
 
-### Create Key Ring
+#### Create Key Ring
 ```
 gcloud kms keyrings create "${KEYRING}" --location="${KEY_LOCATION}"
 ```
-### Create key pair
+#### Create key pair
 ```
 gcloud kms keys create "${KEY_NAME}" \
     --keyring="${KEYRING}" --location="${KEY_LOCATION}" \
     --purpose asymmetric-signing  --default-algorithm="ec-sign-p256-sha256"
 ```    
-### Associate the key with your authority
+#### Associate the key with your authority
 ```
 gcloud beta container binauthz attestors public-keys add  \
     --attestor="${ATTESTOR_ID}"  \
