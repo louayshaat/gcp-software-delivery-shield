@@ -1,4 +1,8 @@
-# gcp-software-delivery-shield
+# GCP Software Delivery Shield Pipeline
+
+![alt text](SDS.jpg)
+
+
 This repo shows how to integrate [Container Analysis](https://cloud.google.com/container-analysis/docs), [Artifact Registry](https://cloud.google.com/artifact-registry) and [Binary Authorization](https://cloud.google.com/binary-authorization) into a [Cloud Build](https://cloud.google.com/build) Pipeline
 
 ## Import the Binary Auth Docker Container
