@@ -30,5 +30,5 @@ Replace the repo-name in the cloudbuild.yaml file with your repo that you create
 
 ## Run the build
 ```
-gcloud builds submit --config=cloudbuild.yaml'''
+gcloud builds submit --config=cloudbuild.yaml
 ```
