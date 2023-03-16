@@ -118,7 +118,6 @@ gcloud beta container binauthz attestors public-keys add  \
 Replace the project and repo-name in the cloudbuild.yaml file with your repo that you created in case you use a different name
 ```
 sed -i 's/$PROJECT/core-demos/g' cloudbuild.yaml
-sed -i 's/$PROJECT/core-demos/g' cloudbuild.yaml
 ```
 
 
