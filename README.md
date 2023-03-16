@@ -100,13 +100,15 @@ gcloud container binauthz attestors list
 ```
 
 ### Create Key Ring
+```
 gcloud kms keyrings create "${KEYRING}" --location="${KEY_LOCATION}"
-
+```
 ### Create key pair
+```
 gcloud kms keys create "${KEY_NAME}" \
     --keyring="${KEYRING}" --location="${KEY_LOCATION}" \
     --purpose asymmetric-signing  --default-algorithm="ec-sign-p256-sha256"
-    
+```    
 ### Associate the key with your authority
 ```
 gcloud beta container binauthz attestors public-keys add  \
