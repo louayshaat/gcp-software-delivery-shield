@@ -6,8 +6,15 @@
 This repo shows how to integrate [Container Analysis](https://cloud.google.com/container-analysis/docs), [Artifact Registry](https://cloud.google.com/artifact-registry) and [Binary Authorization](https://cloud.google.com/binary-authorization) into a [Cloud Build](https://cloud.google.com/build) Pipeline
 
 ### Set the Project name
+
+Replace <YOUR_PROJECT_ID> with your desired Google Cloud project ID
+
 ```
 export PROJECT=PROJECTNAME
+export KEY_LOCATION=global
+export KEYRING=binauthz
+export KEY_NAME=lab-key
+export KEY_VERSION=1
 ```
 
 ## Import the Binary Auth Docker Container
@@ -87,14 +94,6 @@ gcloud container binauthz attestors create my-binauthz-attestor \
 gcloud container binauthz attestors list
 ```
 
-### Add Variables
-
-export KEY_LOCATION=global
-export KEYRING=binauthz
-export KEY_NAME=lab-key
-export KEY_VERSION=1
-
-
 ### Create Key Ring
 gcloud kms keyrings create "${KEYRING}" --location="${KEY_LOCATION}"
 
@@ -118,6 +117,7 @@ gcloud beta container binauthz attestors public-keys add  \
 
 Replace the project and repo-name in the cloudbuild.yaml file with your repo that you created in case you use a different name
 ```
+sed -i 's/$PROJECT/core-demos/g' cloudbuild.yaml
 sed -i 's/$PROJECT/core-demos/g' cloudbuild.yaml
 ```
 
