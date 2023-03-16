@@ -1,9 +1,10 @@
 # gcp-software-delivery-shield
 
 
-Import the Binary AUth Docker Container
+## Import the Binary Auth Docker Container
 
-Create Artifact Repistry repo
+## Create Artifact Repistry repo
 
-then run
-gcloud builds submit --config=cloudbuild.yaml
+## Run the build
+
+'''gcloud builds submit --config=cloudbuild.yaml'''
