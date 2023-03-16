@@ -7,7 +7,7 @@ This repo shows how to integrate [Container Analysis](https://cloud.google.com/c
 
 ### Set the Project name
 
-Replace <PROJECT> with your desired Google Cloud project ID
+Replace ```PROJECTNAME``` with your desired Google Cloud project ID
 
 ```
 export PROJECT=PROJECTNAME
