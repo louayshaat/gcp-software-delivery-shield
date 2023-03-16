@@ -22,11 +22,12 @@ export ATTESTOR_ID=sds
 ## Import the Binary Auth Docker Container
 ```
 git clone https://github.com/GoogleCloudPlatform/gke-binary-auth-tools
-cd binauthz-tools
+cd gke-binary-auth-tools
 gcloud builds submit --project $PROJECT --tag "gcr.io/$PROJECT/cloudbuild-attestor"
 ```
 ## Clone this repo
 ```
+cd ../
 git clone https://github.com/louayshaat/gcp-software-delivery-shield
 cd gcp-software-delivery-shield
 ```
