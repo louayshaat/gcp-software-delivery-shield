@@ -28,6 +28,7 @@ gcloud builds submit --project $PROJECT --tag "gcr.io/$PROJECT/cloudbuild-attest
 ## Clone this repo
 ```
 git clone https://github.com/louayshaat/gcp-software-delivery-shield
+cd gcp-software-delivery-shield
 ```
 
 ## Create Artifact Repistry repo
