@@ -1,11 +1,6 @@
 # gcp-software-delivery-shield
 This repo shows how to integrate Container Aalysis, Artifact Registry and Binary Authorization into a Cloud Build Pipeline
 
-
-## Clone this repo
-```
-git clone https://github.com/louayshaat/gcp-software-delivery-shield
-```
 ## Import the Binary Auth Docker Container
 ```
 export PROJECT=PROJECTNAME
@@ -13,6 +8,10 @@ export PROJECT=PROJECTNAME
 git clone <https://github.com/GoogleCloudPlatform/gke-binary-auth-tools> ~/binauthz-tools
 cd binauthz-tools
 gcloud builds submit --project $PROJECT --tag "gcr.io/$PROJECT/cloudbuild-attestor"
+```
+## Clone this repo
+```
+git clone https://github.com/louayshaat/gcp-software-delivery-shield
 ```
 
 ## Create Artifact Repistry repo
