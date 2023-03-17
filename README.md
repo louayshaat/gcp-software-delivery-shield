@@ -22,6 +22,18 @@ export PROJECT_NUMBER=$(gcloud projects describe "${PROJECT}"  --format="value(p
 export BINAUTHZ_SA_EMAIL="service-${PROJECT_NUMBER}@gcp-sa-binaryauthorization.iam.gserviceaccount.com"
 ```
 
+## ENABLE API'S
+
+```
+gcloud services enable container.googleapis.com
+gcloud services enable binaryauthorization.googleapis.com
+gcloud services enable cloudkms.googleapis.com
+gcloud services enable artifactregistry.googleapis.com
+gcloud services enable ondemandscanning.googleapis.com
+gcloud services enable cloudbuild.googleapis.com
+gcloud services enable containerregistry.googleapis.com
+```
+
 ## Import the Binary Auth Docker Container
 ```
 git clone https://github.com/GoogleCloudPlatform/gke-binary-auth-tools
@@ -35,17 +47,7 @@ git clone https://github.com/louayshaat/gcp-software-delivery-shield
 cd gcp-software-delivery-shield
 ```
 
-## ENABLE API'S
 
-```
-gcloud services enable container.googleapis.com
-gcloud services enable binaryauthorization.googleapis.com
-gcloud services enable cloudkms.googleapis.com
-gcloud services enable artifactregistry.googleapis.com
-gcloud services enable ondemandscanning.googleapis.com
-gcloud services enable cloudbuild.googleapis.com
-gcloud services enable containerregistry.googleapis.com
-```
 
 ## Create Artifact Repistry repo
 ```
