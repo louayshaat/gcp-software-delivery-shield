@@ -33,6 +33,14 @@ git clone https://github.com/louayshaat/gcp-software-delivery-shield
 cd gcp-software-delivery-shield
 ```
 
+## ENABLE API'S
+
+```
+gcloud services enable container.googleapis.com
+gcloud services enable binaryauthorization.googleapis.com
+gcloud services enable cloudkms.googleapis.com
+```
+
 ## Create Artifact Repistry repo
 ```
 gcloud artifacts repositories create sds --location=us-central1 --repository-format=docker
