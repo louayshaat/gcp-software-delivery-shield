@@ -5,7 +5,7 @@
 
 This repo shows how to integrate [Container Analysis](https://cloud.google.com/container-analysis/docs), [Artifact Registry](https://cloud.google.com/artifact-registry) and [Binary Authorization](https://cloud.google.com/binary-authorization) into a [Cloud Build](https://cloud.google.com/build) Pipeline
 
-### Set the required variables
+## Set the required variables
 
 ![#f03c15](https://via.placeholder.com/15/f03c15/f03c15.png) `Replace PROJECTNAME with your desired Google Cloud project ID`
 
@@ -53,6 +53,10 @@ gcloud artifacts repositories create sds --location=us-central1 --repository-for
 gcloud auth configure-docker us-central1-docker.pkg.dev
 ```
 
+## Create GKE Cluster
+```
+gcloud beta container clusters create sds --region us-central1  --binauthz-evaluation-mode=PROJECT_SINGLETON_POLICY_ENFORCE
+```
 ## Create Binary Attestation
 
 #### Create a note
@@ -174,6 +178,7 @@ gcloud projects add-iam-policy-binding ${PROJECT}  --member="serviceAccount:${PR
 gcloud projects add-iam-policy-binding ${PROJECT} --member serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com --role="roles/cloudkms.signerVerifier"
 gcloud projects add-iam-policy-binding ${PROJECT} --member serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com --role="roles/binaryauthorization.attestorsViewer"
 gcloud projects add-iam-policy-binding ${PROJECT} --member serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com --role="roles/containeranalysis.notes.attacher"
+gcloud projects add-iam-policy-binding ${PROJECT} --member="serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com" --role="roles/container.developer"
 ```
 
 #### Add Cloud KMS CryptoKey Signer/Verifier role to Cloud Build Service Account (KMS-based Signing):
