@@ -34,7 +34,7 @@ cd gcp-software-delivery-shield
 
 ## Create Artifact Repistry repo
 ```
-gcloud artifacts repositories create sds
+gcloud artifacts repositories create sds --location=us-central1 --repository-format=docker
 ```
 
 ## Create Binary Attestation
