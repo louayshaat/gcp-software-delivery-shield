@@ -39,6 +39,7 @@ cd gcp-software-delivery-shield
 gcloud services enable container.googleapis.com
 gcloud services enable binaryauthorization.googleapis.com
 gcloud services enable cloudkms.googleapis.com
+gcloud services enable artifactregistry.googleapis.com
 ```
 
 ## Create Artifact Repistry repo
