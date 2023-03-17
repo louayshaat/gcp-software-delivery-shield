@@ -107,8 +107,8 @@ gcloud kms keys create "${KEY_NAME}" \
 #### Add IAM Access
 
 ```
-PROJECT_NUMBER=$(gcloud projects describe "${PROJECT}"  --format="value(projectNumber)")
-BINAUTHZ_SA_EMAIL="service-${PROJECT_NUMBER}@gcp-sa-binaryauthorization.iam.gserviceaccount.com"
+export PROJECT_NUMBER=$(gcloud projects describe "${PROJECT}"  --format="value(projectNumber)")
+export BINAUTHZ_SA_EMAIL="service-${PROJECT_NUMBER}@gcp-sa-binaryauthorization.iam.gserviceaccount.com"
 ```
 
 ```
@@ -165,6 +165,17 @@ EOF
 ```
 gcloud container binauthz policy import policy.yaml
 ```
+
+#### Add IAM roles for Artifact Registry
+
+```
+gcloud projects add-iam-policy-binding ${PROJECT} --member="serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com" --role="roles/iam.serviceAccountUser"
+```
+
+```
+gcloud projects add-iam-policy-binding ${PROJECT}  --member="serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com" --role="roles/ondemandscanning.admin"
+```
+
 
 ## Update the cloudbuild file
 
