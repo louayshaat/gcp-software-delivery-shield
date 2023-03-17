@@ -40,6 +40,7 @@ gcloud services enable container.googleapis.com
 gcloud services enable binaryauthorization.googleapis.com
 gcloud services enable cloudkms.googleapis.com
 gcloud services enable artifactregistry.googleapis.com
+gcloud services enable ondemandscanning.googleapis.com
 ```
 
 ## Create Artifact Repistry repo
