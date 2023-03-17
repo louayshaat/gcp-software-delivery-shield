@@ -166,7 +166,7 @@ EOF
 gcloud container binauthz policy import policy.yaml
 ```
 
-#### Add IAM roles for Artifact Registry
+#### Add IAM roles for Cloud Build
 
 ```
 gcloud projects add-iam-policy-binding ${PROJECT} --member="serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com" --role="roles/iam.serviceAccountUser"
@@ -176,6 +176,17 @@ gcloud projects add-iam-policy-binding ${PROJECT} --member="serviceAccount:${PRO
 gcloud projects add-iam-policy-binding ${PROJECT}  --member="serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com" --role="roles/ondemandscanning.admin"
 ```
 
+```
+gcloud projects add-iam-policy-binding ${PROJECT} --member serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com --role roles/binaryauthorization.attestorsViewer
+```
+
+#### Add Cloud KMS CryptoKey Signer/Verifier role to Cloud Build Service Account (KMS-based Signing):
+
+gcloud projects add-iam-policy-binding ${PROJECT} --member serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com --role roles/cloudkms.signerVerifier
+
+#### Add Container Analysis Notes Attacher role to Cloud Build Service Account:
+
+gcloud projects add-iam-policy-binding ${PROJECT} --member serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com --role roles/containeranalysis.notes.attacher
 
 ## Update the cloudbuild file
 
