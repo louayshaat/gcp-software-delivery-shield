@@ -17,6 +17,7 @@ export KEYRING=binauthz
 export KEY_NAME=lab-key
 export KEY_VERSION=1
 export ATTESTOR_ID=sds
+export NOTE_ID=my-attestor-note
 ```
 
 ## Import the Binary Auth Docker Container
@@ -93,6 +94,41 @@ gcloud kms keys create "${KEY_NAME}" \
     --keyring="${KEYRING}" --location="${KEY_LOCATION}" \
     --purpose asymmetric-signing  --default-algorithm="ec-sign-p256-sha256"
 ```    
+#### Add IAM Access
+
+```
+PROJECT_NUMBER=$(gcloud projects describe "${PROJECT}"  --format="value(projectNumber)")
+BINAUTHZ_SA_EMAIL="service-${PROJECT_NUMBER}@gcp-sa-binaryauthorization.iam.gserviceaccount.com"
+```
+
+```
+cat > ./iam_request.json << EOM                                       INT ✘ 
+{
+  'resource': 'projects/${PROJECT_ID}/notes/${NOTE_ID}',
+  'policy': {
+    'bindings': [
+      {
+        'role': 'roles/containeranalysis.notes.occurrences.viewer',
+        'members': [
+          'serviceAccount:${BINAUTHZ_SA_EMAIL}'
+        ]
+      }
+    ]
+  }
+}
+EOM
+```
+
+
+```
+curl -X POST  \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Bearer $(gcloud auth print-access-token)" \
+    --data-binary @./iam_request.json \
+    "https://containeranalysis.googleapis.com/v1/projects/${PROJECT}/notes/${NOTE_ID}:setIamPolicy"
+```
+
+
 #### Associate the key with your authority
 ```
 gcloud beta container binauthz attestors public-keys add  \
