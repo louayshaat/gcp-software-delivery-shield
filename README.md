@@ -5,7 +5,7 @@
 
 This repo shows how to integrate [Container Analysis](https://cloud.google.com/container-analysis/docs), [Artifact Registry](https://cloud.google.com/artifact-registry) and [Binary Authorization](https://cloud.google.com/binary-authorization) into a [Cloud Build](https://cloud.google.com/build) Pipeline
 
-### Set the Project name
+### Set the required variables
 
 ![#f03c15](https://via.placeholder.com/15/f03c15/f03c15.png) `Replace PROJECTNAME with your desired Google Cloud project ID`
 
@@ -38,23 +38,6 @@ gcloud artifacts repositories create sds
 ```
 
 ## Create Binary Attestation
-
-#### Create a Policy
-```
-cat << EOF > policy.yaml
-    globalPolicyEvaluationMode: ENABLE
-    defaultAdmissionRule:
-      evaluationMode: REQUIRE_ATTESTATION
-      enforcementMode: ENFORCED_BLOCK_AND_AUDIT_LOG
-      requireAttestationsBy:
-      - projects/${PROJECT_ID}/attestors/${ATTESTOR_ID}
-EOF
-```
-
-#### Import policy
-```
-gcloud container binauthz policy import policy.yaml
-```
 
 #### Create a note
 ```
@@ -120,6 +103,22 @@ gcloud beta container binauthz attestors public-keys add  \
     --keyversion-key="${KEY_NAME}" \
     --keyversion="${KEY_VERSION}"
 ```
+#### Create a Policy
+```
+cat << EOF > policy.yaml
+    globalPolicyEvaluationMode: ENABLE
+    defaultAdmissionRule:
+      evaluationMode: REQUIRE_ATTESTATION
+      enforcementMode: ENFORCED_BLOCK_AND_AUDIT_LOG
+      requireAttestationsBy:
+      - projects/${PROJECT_ID}/attestors/${ATTESTOR_ID}
+EOF
+```
+
+#### Import policy
+```
+gcloud container binauthz policy import policy.yaml
+```
 
 ## Update the cloudbuild file
 
@@ -127,9 +126,6 @@ Replace the project and repo-name in the cloudbuild.yaml file with your repo tha
 ```
 sed -i 's/$PROJECT/core-demos/g' cloudbuild.yaml
 ```
-
-
-
 
 ## Run the build
 ```
