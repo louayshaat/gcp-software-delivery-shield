@@ -43,11 +43,14 @@ gcloud services enable binaryauthorization.googleapis.com
 gcloud services enable cloudkms.googleapis.com
 gcloud services enable artifactregistry.googleapis.com
 gcloud services enable ondemandscanning.googleapis.com
+gcloud services enable cloudbuild.googleapis.com
+gcloud services enable containerregistry.googleapis.com
 ```
 
 ## Create Artifact Repistry repo
 ```
-gcloud artifacts repositories create sds --location=us-central1 --repository-format=docker
+gcloud artifacts repositories create sds --location=us-central1 --repository-format=docker --description="Docker repository"
+gcloud auth configure-docker us-central1-docker.pkg.dev
 ```
 
 ## Create Binary Attestation
