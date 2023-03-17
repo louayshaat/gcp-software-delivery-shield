@@ -62,8 +62,8 @@ steps:
   id: 'Deploy Kubernetes Manifest to GKE'
   args: [ 'apply', '-f', 'manifests/app.yaml' ]
   env:
-    - 'CLOUDSDK_COMPUTE_REGION=europe-west1'
-    - 'CLOUDSDK_CONTAINER_CLUSTER=monitoring'
+    - 'CLOUDSDK_COMPUTE_REGION=us-central1'
+    - 'CLOUDSDK_CONTAINER_CLUSTER=sds'
 
 
 
