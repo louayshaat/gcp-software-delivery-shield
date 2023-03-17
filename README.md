@@ -18,6 +18,8 @@ export KEY_NAME=lab-key
 export KEY_VERSION=1
 export ATTESTOR_ID=sds
 export NOTE_ID=my-attestor-note
+export PROJECT_NUMBER=$(gcloud projects describe "${PROJECT}"  --format="value(projectNumber)")
+export BINAUTHZ_SA_EMAIL="service-${PROJECT_NUMBER}@gcp-sa-binaryauthorization.iam.gserviceaccount.com"
 ```
 
 ## Import the Binary Auth Docker Container
@@ -105,11 +107,6 @@ gcloud kms keys create "${KEY_NAME}" \
     --purpose asymmetric-signing  --default-algorithm="ec-sign-p256-sha256"
 ```    
 #### Add IAM Access
-
-```
-export PROJECT_NUMBER=$(gcloud projects describe "${PROJECT}"  --format="value(projectNumber)")
-export BINAUTHZ_SA_EMAIL="service-${PROJECT_NUMBER}@gcp-sa-binaryauthorization.iam.gserviceaccount.com"
-```
 
 ```
 cat > ./iam_request.json << EOM                                       INT ✘ 
