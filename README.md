@@ -147,7 +147,7 @@ cat << EOF > policy.yaml
       evaluationMode: REQUIRE_ATTESTATION
       enforcementMode: ENFORCED_BLOCK_AND_AUDIT_LOG
       requireAttestationsBy:
-      - projects/${PROJECT_ID}/attestors/${ATTESTOR_ID}
+      - projects/${PROJECT}/attestors/${ATTESTOR_ID}
 EOF
 ```
 
