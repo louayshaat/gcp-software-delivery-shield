@@ -133,7 +133,7 @@ curl -X POST  \
 ```
 gcloud beta container binauthz attestors public-keys add  \
     --attestor="${ATTESTOR_ID}"  \
-    --keyversion-project=“${PROJECT}”  \
+    --keyversion-project="${PROJECT}"  \
     --keyversion-location="${KEY_LOCATION}" \
     --keyversion-keyring="${KEYRING}" \
     --keyversion-key="${KEY_NAME}" \
