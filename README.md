@@ -32,6 +32,7 @@ gcloud services enable artifactregistry.googleapis.com
 gcloud services enable ondemandscanning.googleapis.com
 gcloud services enable cloudbuild.googleapis.com
 gcloud services enable containerregistry.googleapis.com
+gcloud services enable compute.googleapis.com
 ```
 
 ## Import the Binary Auth Docker Container
