@@ -184,14 +184,6 @@ gcloud projects add-iam-policy-binding ${PROJECT} --member serviceAccount:${PROJ
 gcloud projects add-iam-policy-binding ${PROJECT} --member="serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com" --role="roles/container.developer"
 ```
 
-#### Add Cloud KMS CryptoKey Signer/Verifier role to Cloud Build Service Account (KMS-based Signing):
-
-gcloud projects add-iam-policy-binding ${PROJECT} --member serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com --role roles/cloudkms.signerVerifier
-
-#### Add Container Analysis Notes Attacher role to Cloud Build Service Account:
-
-gcloud projects add-iam-policy-binding ${PROJECT} --member serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com --role roles/containeranalysis.notes.attacher
-
 ## Update the cloudbuild file
 
 Replace the project and repo-name in the cloudbuild.yaml file with your repo that you created in case you use a different name
