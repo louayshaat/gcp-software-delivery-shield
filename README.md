@@ -121,7 +121,7 @@ gcloud kms keys create "${KEY_NAME}" \
 ```
 cat > ./iam_request.json << EOM                                       INT ✘ 
 {
-  'resource': 'projects/${PROJECT_ID}/notes/${NOTE_ID}',
+  'resource': 'projects/${PROJECT}/notes/${NOTE_ID}',
   'policy': {
     'bindings': [
       {
