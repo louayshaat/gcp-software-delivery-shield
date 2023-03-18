@@ -186,9 +186,9 @@ gcloud projects add-iam-policy-binding ${PROJECT} --member="serviceAccount:${PRO
 
 ## Update the cloudbuild file
 
-Replace the project and repo-name in the cloudbuild.yaml file with your repo that you created in case you use a different name
+Replace the $PROJECT value with your project name in the cloudbuild.yaml file
 ```
-sed -ic 's/core-demos/$PROJECT/g' cloudbuild.yam
+sed -ic 's/core-demos/$PROJECT/g' cloudbuild.yaml
 ```
 
 ## Run the build
