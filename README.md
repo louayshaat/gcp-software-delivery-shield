@@ -184,11 +184,14 @@ gcloud projects add-iam-policy-binding ${PROJECT} --member serviceAccount:${PROJ
 gcloud projects add-iam-policy-binding ${PROJECT} --member="serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com" --role="roles/container.developer"
 ```
 
-## Update the cloudbuild file
+## Update the cloudbuild file and manifest files
 
 Replace the $PROJECT value with your project name in the cloudbuild.yaml file
+
+Change YOURPRJECTNAME with your project name
 ```
-sed -ic 's/core-demos/$PROJECT/g' cloudbuild.yaml
+sed -ic 's/$PROJECT/YOURPRJECTNAME/g' cloudbuild.yaml
+sed -ic 's/$PROJECT/YOURPRJECTNAME/g' manifests/app.yaml.tpl
 ```
 
 ## Run the build
