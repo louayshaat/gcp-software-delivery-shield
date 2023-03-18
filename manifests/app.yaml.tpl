@@ -3,8 +3,8 @@ kind: Pod
 metadata:
   creationTimestamp: null
   labels:
-    run: gradle-app
-  name: gradle-app
+    run: secure-app
+  name: secure-app
 spec:
   securityContext:
     runAsUser: 1000
@@ -12,7 +12,7 @@ spec:
     fsGroup: 2000
   containers:
     - image: us-central1-docker.pkg.dev/$PROJECT/sds/new@DIGEST
-      name: gradle-app
+      name: secure-app
       resources:
         requests:
           memory: "64Mi"
