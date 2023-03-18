@@ -119,7 +119,7 @@ gcloud kms keys create "${KEY_NAME}" \
 #### Add IAM Access
 
 ```
-cat > ./iam_request.json << EOM                                       INT ✘ 
+cat > ./iam_request.json << EOM
 {
   'resource': 'projects/${PROJECT}/notes/${NOTE_ID}',
   'policy': {
