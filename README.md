@@ -10,7 +10,7 @@ This repo shows how to integrate [Container Analysis](https://cloud.google.com/c
 ![#f03c15](https://via.placeholder.com/15/f03c15/f03c15.png) `Replace PROJECTNAME with your desired Google Cloud project ID`
 ```
 export PROJECT=PROJECTNAME
-
+```
 ### Add the following variables
 ```
 export KEY_LOCATION=global
