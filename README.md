@@ -201,4 +201,4 @@ gcloud builds submit --config=cloudbuild.yaml
 ```
 ![alt text](build.jpg)
 
-A successful build will run through the 7 steps on building the imnage, scanning it, passing the checks, tagging it, pushing it to Artifact registry, Attesting it using Binary auth and deploying a manifest to GKE
+A successful build will run through the 7 steps on building the image, scan it, passing the checks it will tag it, push it to Artifact registry, Attesting it using Binary Auth and deploying a manifest to GKE
