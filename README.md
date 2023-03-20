@@ -191,8 +191,8 @@ Replace the $PROJECT value with your project name in the cloudbuild.yaml file
 
 Change YOURPRJECTNAME with your project name
 ```
-sed -ic 's/$PROJECT/YOURPRJECTNAME/g' cloudbuild.yaml
-sed -ic 's/$PROJECT/YOURPRJECTNAME/g' manifests/app.yaml.tpl
+sed -ic 's/core-demos/YOURPRJECTNAME/g' cloudbuild.yaml
+sed -ic 's/core-demos/YOURPRJECTNAME/g' manifests/app.yaml.tpl
 ```
 
 ## Run the build
