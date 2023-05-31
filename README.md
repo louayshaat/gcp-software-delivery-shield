@@ -180,8 +180,8 @@ gcloud container binauthz policy import policy.yaml
 gcloud projects add-iam-policy-binding ${PROJECT} --member="serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com" --role="roles/iam.serviceAccountUser"
 gcloud projects add-iam-policy-binding ${PROJECT}  --member="serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com" --role="roles/ondemandscanning.admin"
 gcloud projects add-iam-policy-binding ${PROJECT} --member serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com --role="roles/cloudkms.signerVerifier"
-gcloud projects add-iam-policy-binding ${PROJECT} --member serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com --role="roles/binaryauthorization.attestorsViewer"
-gcloud projects add-iam-policy-binding ${PROJECT} --member serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com --role="roles/containeranalysis.notes.attacher"
+gcloud projects add-iam-policy-binding ${PROJECT} --member serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com --role="roles/binaryauthorization.attestorsAdmin"
+gcloud projects add-iam-policy-binding ${PROJECT} --member serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com --role="roles/containeranalysis.admin"
 gcloud projects add-iam-policy-binding ${PROJECT} --member="serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com" --role="roles/container.developer"
 ```
 
