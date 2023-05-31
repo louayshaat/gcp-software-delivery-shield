@@ -126,7 +126,7 @@ cat > ./iam_request.json << EOM
   'policy': {
     'bindings': [
       {
-        'role': 'roles/containeranalysis.notes.occurrences.viewer',
+        'role': 'roles/containeranalysis.notes.editor',
         'members': [
           'serviceAccount:${BINAUTHZ_SA_EMAIL}'
         ]
