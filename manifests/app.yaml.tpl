@@ -11,7 +11,7 @@ spec:
     runAsGroup: 3000
     fsGroup: 2000
   containers:
-    - image: us-central1-docker.pkg.dev/$PROJECT/sds/new@DIGEST
+    - image: us-central1-docker.pkg.dev/core-demos/sds/new@DIGEST
       name: secure-app
       resources:
         requests:
