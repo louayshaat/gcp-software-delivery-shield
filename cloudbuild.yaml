@@ -68,4 +68,4 @@ steps:
     - 'CLOUDSDK_CONTAINER_CLUSTER=standard'
 
 options:
- requestedVerifyOption: "VERIFIED"
+ requestedVerifyOption: VERIFIED
