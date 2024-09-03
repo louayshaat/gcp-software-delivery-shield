@@ -3,8 +3,6 @@ steps:
 - id: "Build the image"
   name: 'gcr.io/cloud-builders/docker'
   args: [ 'build', '-t', 'us-central1-docker.pkg.dev/core-demos/sds/new', '.' ]
-  options:
-  requestedVerifyOption: VERIFIED
 #Run a vulnerability scan at _SECURITY level
 - id: scan
   name: 'gcr.io/cloud-builders/gcloud'
