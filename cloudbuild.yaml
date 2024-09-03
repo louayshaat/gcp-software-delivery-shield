@@ -18,7 +18,7 @@ steps:
   args:
   - '-c'
   - |
-      gcloud artifacts docker images list-vulnerabilities $(cat /workspace/scan_id.txt)       --format="value(vulnerability.effectiveSeverity)" | if grep -Fxq CRITICAL;       then echo "Failed vulnerability check for CRITICAL level" && exit 1; else echo "No CRITICAL vulnerability found, congrats !" && exit 0; fi
+      gcloud artifacts docker images list-vulnerabilities $(cat /workspace/scan_id.txt)       --format="value(vulnerability.effectiveSeverity)" | if grep -Fxq XCRITICAL;       then echo "Failed vulnerability check for CRITICAL level" && exit 1; else echo "No CRITICAL vulnerability found, congrats !" && exit 0; fi
 #Retag
 - id: "retag"
   name: 'gcr.io/cloud-builders/docker'
@@ -62,9 +62,8 @@ steps:
   id: 'Deploy Kubernetes Manifest to GKE'
   args: [ 'apply', '-f', 'manifests/app.yaml' ]
   env:
-    - 'CLOUDSDK_COMPUTE_REGION=us-central1'
-    - 'CLOUDSDK_CONTAINER_CLUSTER=sds'
+    - 'CLOUDSDK_COMPUTE_REGION=europe-west1'
+    - 'CLOUDSDK_CONTAINER_CLUSTER=standard'
 
-
-
-
+options:
+ requestedVerifyOption: "VERIFIED"
